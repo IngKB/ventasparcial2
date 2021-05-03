@@ -17,7 +17,7 @@ namespace ventas.application.test
         public SalidaProductoService _salidaService;//SUT - Objeto bajo prueba
 
         //se ejecuta una vez por cada prueba //hace parte del Arrange
-        [SetUp]
+        [OneTimeSetUp]
         public void Setup()
         {
             //Arrange

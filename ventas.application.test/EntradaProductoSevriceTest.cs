@@ -9,14 +9,14 @@ using ventas.infrastructure;
 
 namespace ventas.application.test
 {
-    
-  public  class EntradaProductoSevriceTest
+    [TestFixture]
+    public  class EntradaProductoSevriceTest
     {
         private ventasContext _dbContext;
         private  ProductoEntradaService _entradaService;//SUT - Objeto bajo prueba
 
         //se ejecuta una vez por cada prueba //hace parte del Arrange
-        [SetUp]
+        [OneTimeSetUp]
         public void Setup()
         {
             //Arrange
@@ -32,7 +32,7 @@ namespace ventas.application.test
                 new UnitOfWork(_dbContext),
                 new ProductoRepository(_dbContext));
            
-            _dbContext.Productos.Add(ProductoMother.ProductoCocacola("001"));
+            _dbContext.Productos.Add(ProductoMother.ProductoCocacola("003"));
             _dbContext.SaveChanges();
               
         }
@@ -40,8 +40,8 @@ namespace ventas.application.test
         [Test]
         public void EntradaSimpleTest()
         {
-            var response = _entradaService.Ejecutar(new SalidaProductoRequest("001", 3));
-            Assert.AreEqual("Nueva salida: Cocacola, cantidad:3, costo:1000, precio:3000", response.Mensaje);
+            var response = _entradaService.Ejecutar(new SalidaProductoRequest("003", 3));
+            Assert.AreEqual("Nueva salida: Cocacola, cantidad:3, costo:$ 1.000,00, precio:$ 3.000,00", response.Mensaje);
         }
         [TearDown]
         public void RunAnyAfterTest()
