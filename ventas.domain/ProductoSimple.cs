@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using ventas.domain.Base;
 
@@ -36,7 +37,7 @@ namespace ventas.domain
             if (cantidad >= 0)
             {
                 this.Cantidad -= cantidad;
-                return $"Nueva salida: {Nombre}, cantidad:{cantidad}, costo:{Costo.ToString("C2")}, precio:{Precio.ToString("C2")}";
+                return $"Nueva salida: {Nombre}, cantidad:{cantidad}, costo:{Costo.ToString("C2", new CultureInfo("es-CO"))}, precio:{Precio.ToString("C2", new CultureInfo("es-CO"))}";
             }
             return "Salida menor o igual a 0";
         }
