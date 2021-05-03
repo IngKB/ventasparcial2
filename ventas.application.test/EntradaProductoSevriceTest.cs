@@ -9,14 +9,14 @@ using ventas.infrastructure;
 
 namespace ventas.application.test
 {
-    [SetUpFixture]
+    
   public  class EntradaProductoSevriceTest
     {
         private ventasContext _dbContext;
         private  ProductoEntradaService _entradaService;//SUT - Objeto bajo prueba
 
         //se ejecuta una vez por cada prueba //hace parte del Arrange
-        [OneTimeSetUp]
+        [SetUp]
         public void Setup()
         {
             //Arrange
@@ -31,9 +31,19 @@ namespace ventas.application.test
             _entradaService = new ProductoEntradaService(
                 new UnitOfWork(_dbContext),
                 new ProductoRepository(_dbContext));
+           
+            _dbContext.Productos.Add(ProductoMother.ProductoCocacola("001"));
+            _dbContext.SaveChanges();
               
         }
-        [OneTimeTearDown]
+
+        [Test]
+        public void EntradaSimpleTest()
+        {
+            var response = _entradaService.Ejecutar(new SalidaProductoRequest("001", 3));
+            Assert.AreEqual("Nueva salida: Cocacola, cantidad:3, costo:1000, precio:3000", response.Mensaje);
+        }
+        [TearDown]
         public void RunAnyAfterTest()
         {
             _dbContext.Database.EnsureDeleted();
