@@ -4,4 +4,9 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ventas.domain\ventas.domain.csproj" />
+    <ProjectReference Include="..\ventas.infrastructure\ventas.infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
