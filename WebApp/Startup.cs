@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -11,6 +12,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ventas.domain.Contracts;
+using ventas.infrastructure;
 
 namespace WebApp
 {
@@ -26,6 +29,16 @@ namespace WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            var connectionString = Configuration.GetConnectionString("ventasContext");//obtiene la configuracion del appsettitgs
+
+            services.AddDbContext<ventasContext>(opt => opt.UseSqlite(connectionString, b => b.MigrationsAssembly("WebApp")));
+
+            ///Inyección de dependencia Especifica
+            services.AddScoped<IUnitOfWork, UnitOfWork>(); //Crear Instancia por peticion
+            services.AddScoped<IProductoRepository, ProductoRepository>(); //Crear Instancia por peticion
+            services.AddScoped<IDbContext, ventasContext>(); //Crear Instancia por peticion
+
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

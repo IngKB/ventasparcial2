@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ventas.infrastructure;
+using ventas.domain.Contracts;
 
 namespace ventas.application
 {
     public class SalidaProductoService
     {
-        public UnitOfWork UnitOfWork { get; }
-        public ProductoRepository ProductoRepository { get; }
-        public SalidaProductoService(UnitOfWork unitOfWork, ProductoRepository prodRepository)
+        public IUnitOfWork UnitOfWork { get; }
+        public IProductoRepository ProductoRepository { get; }
+        public SalidaProductoService(IUnitOfWork unitOfWork, IProductoRepository prodRepository)
         {
             UnitOfWork = unitOfWork;
             ProductoRepository = prodRepository;
