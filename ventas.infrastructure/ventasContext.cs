@@ -8,7 +8,7 @@ using ventas.domain;
 
 namespace ventas.infrastructure
 {
-    class ventasContext : DbContextBase
+  public  class ventasContext : DbContextBase
     {
 
         public ventasContext(DbContextOptions options) : base(options)
