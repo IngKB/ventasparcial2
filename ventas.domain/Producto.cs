@@ -11,7 +11,7 @@ namespace ventas.domain
     {
         public string Codigo { get; private set; }
         public string Nombre { get; protected set; }
-        protected decimal Costo { get; set; }
+        public decimal Costo { get; protected set; }
         public decimal Precio { get; protected set; }
 
 

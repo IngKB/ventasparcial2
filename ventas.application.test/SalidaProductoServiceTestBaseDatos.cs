@@ -10,7 +10,8 @@ using ventas.infrastructure;
 
 namespace ventas.application.test
 {
-    public class SalidaProductoServiceTest
+    [TestFixture]
+    public class SalidaProductoServiceTestBaseDatos
     {
         public ventasContext _dbContext;
         public SalidaProductoService _salidaService;//SUT - Objeto bajo prueba
@@ -38,8 +39,11 @@ namespace ventas.application.test
             ProductoSimple salchicha = (ProductoSimple)ProductoMother.ProductoSalchicha("002");
             salchicha.RegistrarEntrada(10);
 
-            _dbContext.Productos.Add(pan);
+            ProductoCompuesto perro = new("003", "Perro", 5000, new List<Producto> { pan, salchicha });
+          
+            //_dbContext.Productos.Add(pan);
             _dbContext.Productos.Add(salchicha);
+            _dbContext.Productos.Add(perro);
             _dbContext.SaveChanges();
 
         }
@@ -48,10 +52,17 @@ namespace ventas.application.test
         public void SalidaProductoSimpleTest()
         {
             var response = _salidaService.Ejecutar(new SalidaProductoRequest("001", 3));
-            Assert.AreEqual("Nueva salida: Pan, cantidad:3, costo:500, precio:0", response.Mensaje);
+            Assert.AreEqual("Nueva salida: Pan, cantidad:3, costo:$ 500,00, precio:$ 0,00", response.Mensaje);
         }
 
-        [TearDown]
+        [Test]
+        public void SalidaProductoCompuestoTest()
+        {
+            var response = _salidaService.Ejecutar(new SalidaProductoRequest("003", 4));
+            Assert.AreEqual("Nueva salida: Perro, cantidad:4, costo:$ 1.500,00, precio:$ 20.000,00", response.Mensaje);
+        }
+
+        [OneTimeTearDown]
         public void RunAfterAnyTests()
         {
             _dbContext.Database.EnsureDeleted();

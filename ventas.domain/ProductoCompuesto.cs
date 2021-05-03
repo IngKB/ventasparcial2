@@ -25,12 +25,13 @@ namespace ventas.domain
 
         public override string RegistrarSalida(int cantidad)
         {
+            var precioTotal = cantidad * Precio;
             foreach (var item in Productos)
             {
                 item.RegistrarSalida(cantidad);
             }
 
-            return $"Nueva salida: {Nombre}, cantidad:{cantidad}, costo:{Costo}, precio:{Precio}";
+            return $"Nueva salida: {Nombre}, cantidad:{cantidad}, costo:{Costo.ToString("C2")}, precio:{precioTotal.ToString("C2")}";
 
         }
 

@@ -26,7 +26,6 @@ namespace ventas.application
                 {
                     return new SalidaProductoResponse(1, "No se encuentra el producto");
                 }
-            Console.WriteLine(prod);
                 var respuesta = prod.RegistrarSalida(request.Cantidad);
                 UnitOfWork.Commit();
                 return new SalidaProductoResponse(0, respuesta);

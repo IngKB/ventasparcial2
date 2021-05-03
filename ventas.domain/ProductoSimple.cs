@@ -17,7 +17,7 @@ namespace ventas.domain
             Tipo = tipo;
         }
 
-        private ProductoSimple()
+        public ProductoSimple()
         {
         }
 
@@ -36,7 +36,7 @@ namespace ventas.domain
             if (cantidad >= 0)
             {
                 this.Cantidad -= cantidad;
-                return $"Nueva salida: {Nombre}, cantidad:{cantidad}, costo:{getCosto()}, precio:{Precio}";
+                return $"Nueva salida: {Nombre}, cantidad:{cantidad}, costo:{Costo.ToString("C2")}, precio:{Precio.ToString("C2")}";
             }
             return "Salida menor o igual a 0";
         }

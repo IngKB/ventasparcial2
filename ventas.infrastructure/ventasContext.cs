@@ -24,6 +24,9 @@ namespace ventas.infrastructure
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Producto>().HasKey(c => c.Id);
+
+            modelBuilder.Entity<ProductoSimple>().HasData(new { Id = 1, Codigo = "001", Nombre = "Pan", Precio = 0m, Costo = 500m, Tipo = "Preparacion", Cantidad = 10 });
+
         }
     }
 }
