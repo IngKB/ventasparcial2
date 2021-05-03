@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace Banco.Domain.Base
+namespace ventas.domain.Base
 {
     public interface IGenericRepository<T> where T : BaseEntity,IAggregateRoot
     {

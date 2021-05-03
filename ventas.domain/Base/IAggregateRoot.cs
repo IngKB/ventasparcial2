@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Banco.Domain.Base
+namespace ventas.domain.Base
 {
     public interface IAggregateRoot
     {

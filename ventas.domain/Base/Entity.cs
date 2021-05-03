@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Banco.Domain.Base
+namespace ventas.domain.Base
 {
     public abstract class Entity<T> : BaseEntity,IEntity<T>
     {

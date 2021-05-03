@@ -1,10 +1,9 @@
-﻿using Banco.Domain.Contracts;
-using Banco.Infrastructure.Data.Base;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ventas.domain.Contracts;
 
-namespace Banco.Infrastructure.Data
+namespace ventas.infrastructure
 {
     public class UnitOfWork : IUnitOfWork
     {

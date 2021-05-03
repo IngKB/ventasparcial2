@@ -1,13 +1,13 @@
-﻿using Banco.Domain.Base;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using ventas.domain.Base;
 
-namespace Banco.Infrastructure.Data.Base
+namespace ventas.infrastructure
 {
     public abstract class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity, IAggregateRoot
     {
