@@ -7,7 +7,7 @@ using ventas.domain.Base;
 
 namespace ventas.domain
 {
-    public abstract class Producto: Entity<int>
+    public abstract class Producto: Entity<int>, IAggregateRoot
     {
         public string Codigo { get; private set; }
         public string Nombre { get; protected set; }

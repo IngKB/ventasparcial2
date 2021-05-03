@@ -5,7 +5,7 @@ using ventas.domain.Base;
 
 namespace ventas.domain
 {
-    public class ProductoSimple: Producto, IAggregateRoot
+    public class ProductoSimple: Producto
     {
         
         public int Cantidad { get; private set; }

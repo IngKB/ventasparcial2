@@ -8,12 +8,10 @@ using ventas.domain.Contracts;
 
 namespace ventas.infrastructure
 {
-
-    public class ProductoCompuestoRepositorio : GenericRepository<ProductoCompuesto>, IProductoCompuestoRepository
+    public class ProductoRepository : GenericRepository<Producto>, IProductoRepository
     {
-        public ProductoCompuestoRepositorio(IDbContext context) : base(context)
+        public ProductoRepository(IDbContext context) : base(context)
         {
         }
     }
 }
-
