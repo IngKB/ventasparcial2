@@ -18,6 +18,8 @@ namespace ventas.infrastructure
 
 
         public DbSet<Producto> Productos { get; set; }//equivale a Repositorios
+        public DbSet<ProductoSimple> ProductosSimples { get; set; }
+        public DbSet<ProductoCompuesto> ProductoCompuesto { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

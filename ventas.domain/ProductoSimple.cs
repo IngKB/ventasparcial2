@@ -17,6 +17,10 @@ namespace ventas.domain
             Tipo = tipo;
         }
 
+        private ProductoSimple()
+        {
+        }
+
         public string RegistrarEntrada(int cantidad)
         {
             if (cantidad >= 0)

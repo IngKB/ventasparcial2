@@ -19,6 +19,9 @@ namespace ventas.domain
             getCosto();
         }
 
+        private ProductoCompuesto()
+        {
+        }
 
         public override string RegistrarSalida(int cantidad)
         {
