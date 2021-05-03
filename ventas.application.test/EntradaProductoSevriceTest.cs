@@ -9,13 +9,14 @@ using ventas.infrastructure;
 
 namespace ventas.application.test
 {
+    [SetUpFixture]
   public  class EntradaProductoSevriceTest
     {
         private ventasContext _dbContext;
         private  ProductoEntradaService _entradaService;//SUT - Objeto bajo prueba
 
         //se ejecuta una vez por cada prueba //hace parte del Arrange
-        [SetUp]
+        [OneTimeSetUp]
         public void Setup()
         {
             //Arrange
@@ -31,6 +32,11 @@ namespace ventas.application.test
                 new UnitOfWork(_dbContext),
                 new ProductoRepository(_dbContext));
               
+        }
+        [OneTimeTearDown]
+        public void RunAnyAfterTest()
+        {
+            _dbContext.Database.EnsureDeleted();
         }
     }
 }

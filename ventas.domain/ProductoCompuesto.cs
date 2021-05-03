@@ -13,7 +13,7 @@ namespace ventas.domain
         private List<Producto> Productos { get; set; }
 
 
-        public ProductoCompuesto(string id, string nombre, decimal precio, List<Producto> productos) : base(id, nombre, 0, precio)
+        public ProductoCompuesto(string codigo, string nombre, decimal precio, List<Producto> productos) : base(id, nombre, 0, precio)
         {
             Productos = productos;
             getCosto();
