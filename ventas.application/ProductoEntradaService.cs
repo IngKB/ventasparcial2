@@ -9,15 +9,15 @@ namespace ventas.application
 {
     public class ProductoEntradaService
     {
-        public ProductoEntradaService(UnitOfWork unitOfWork, CuentaBancariaRepository cuentaBancariaRepository, MailServerSpy mailServerSpy)
+        public UnitOfWork UnitOfWork { get; }
+        public ProductoRepository ProductoRepository { get; }
+        public ProductoEntradaService(UnitOfWork unitOfWork, ProductoRepository prodRepository)
         {
             UnitOfWork = unitOfWork;
-            CuentaBancariaRepository = cuentaBancariaRepository;
-            MailServerSpy = mailServerSpy;
+            ProductoRepository = prodRepository;
         }
 
-        public UnitOfWork UnitOfWork { get; }
-        public CuentaBancariaRepository CuentaBancariaRepository { get; }
-        public MailServerSpy MailServerSpy { get; }
+
+
     }
 }

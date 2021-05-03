@@ -11,7 +11,7 @@ namespace ventas.application.test
 {
   public  class EntradaProductoSevriceTest
     {
-        private ventasContext dbContext;
+        private ventasContext _dbContext;
         private  ProductoEntradaService _entradaService;//SUT - Objeto bajo prueba
 
         //se ejecuta una vez por cada prueba //hace parte del Arrange
@@ -23,14 +23,14 @@ namespace ventas.application.test
            .UseSqlite(@"Data Source=ventasDataBaseTest.db")
            .Options;
 
-            dbContext = new ventasContext(optionsSqlite);
-            dbContext.Database.EnsureDeleted();
-            dbContext.Database.EnsureCreated();
+            _dbContext = new ventasContext(optionsSqlite);
+            _dbContext.Database.EnsureDeleted();
+            _dbContext.Database.EnsureCreated();
 
             _entradaService = new ProductoEntradaService(
-                new UnitOfWork(dbContext),
-                new CuentaBancariaRepository(_dbContext),
-                new MailServerSpy());
+                new UnitOfWork(_dbContext),
+                new ProductoRepository(_dbContext));
+              
         }
     }
 }
