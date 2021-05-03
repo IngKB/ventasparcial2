@@ -7,8 +7,7 @@ using ventas.domain.Base;
 
 namespace ventas.domain.Contracts
 {
-   
-    public interface IProductoCompuestoRepository : IGenericRepository<ProductoCompuesto>
+    public interface IProductoRepository : IGenericRepository<Producto>
     {
     }
 }

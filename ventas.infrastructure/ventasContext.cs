@@ -8,7 +8,7 @@ using ventas.domain;
 
 namespace ventas.infrastructure
 {
-  public  class ventasContext : DbContextBase
+    public class ventasContext : DbContextBase
     {
 
         public ventasContext(DbContextOptions options) : base(options)
@@ -17,17 +17,11 @@ namespace ventas.infrastructure
         }
 
 
-        public DbSet<ProductoCompuesto> ProductosCompuestos { get; set; }//equivale a Repositorios
-        public DbSet<ProductoSimple> ProductoSimples { get; set; }
+        public DbSet<Producto> Productos { get; set; }//equivale a Repositorios
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ProductoCompuesto>().HasKey(c => c.Id);
-            modelBuilder.Entity<ProductoSimple>().HasKey(c => c.Id);
-
-            //inicailizacion de datos 
-            //modelBuilder.Entity<CuentaBancaria>().HasData(new  { Id=1, Numero="1010", Ciudad="Valleduar", Email="Email"} );
-            //modelBuilder.Entity<CuentaBancaria>().HasData(new { Id = 1, Numero = "1010", Ciudad = "Valleduar", Email = "Email" });
+            modelBuilder.Entity<Producto>().HasKey(c => c.Id);
         }
     }
 }
