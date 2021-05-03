@@ -15,12 +15,16 @@ namespace ventas.domain
         public decimal Precio { get; protected set; }
 
 
-        public Producto(string codigo, string nombre, decimal costo, decimal precio)
+        protected Producto(string codigo, string nombre, decimal costo, decimal precio)
         {
             Codigo = codigo;
             Nombre = nombre;
             Costo = costo;
             Precio = precio;
+        }
+
+        protected Producto()
+        {
         }
 
         public abstract string RegistrarSalida(int cantidad);

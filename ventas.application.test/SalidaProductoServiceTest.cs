@@ -10,14 +10,13 @@ using ventas.infrastructure;
 
 namespace ventas.application.test
 {
-    [SetUpFixture]
     public class SalidaProductoServiceTest
     {
-        private ventasContext _dbContext;
-        private SalidaProductoService _salidaService;//SUT - Objeto bajo prueba
+        public ventasContext _dbContext;
+        public SalidaProductoService _salidaService;//SUT - Objeto bajo prueba
 
         //se ejecuta una vez por cada prueba //hace parte del Arrange
-        [OneTimeSetUp]
+        [SetUp]
         public void Setup()
         {
             //Arrange
@@ -32,20 +31,31 @@ namespace ventas.application.test
             _salidaService = new SalidaProductoService(
                 new UnitOfWork(_dbContext),
                 new ProductoRepository(_dbContext));
+
+            ProductoSimple pan = (ProductoSimple)ProductoMother.ProductoPan("001");
+            pan.RegistrarEntrada(10);
+
+            ProductoSimple salchicha = (ProductoSimple)ProductoMother.ProductoSalchicha("002");
+            salchicha.RegistrarEntrada(10);
+
+            _dbContext.Productos.Add(pan);
+            _dbContext.Productos.Add(salchicha);
+            _dbContext.SaveChanges();
+
         }
 
         [Test]
-        public void SalidaProductoTest()
+        public void SalidaProductoSimpleTest()
         {
-
+            var response = _salidaService.Ejecutar(new SalidaProductoRequest("001", 3));
+            Assert.AreEqual("Nueva salida: Pan, cantidad:3, costo:500, precio:0", response.Mensaje);
         }
 
-        [OneTimeTearDown]
+        [TearDown]
         public void RunAfterAnyTests()
         {
             _dbContext.Database.EnsureDeleted();
         }
-
 
     }
 }
