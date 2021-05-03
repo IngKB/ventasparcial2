@@ -11,7 +11,7 @@ namespace ventas.domain
         public int Cantidad { get; private set; }
         private string Tipo { get; set; }
 
-        public ProductoSimple(string codigo, string nombre, decimal costo, decimal precio, string tipo) : base(codigo, nombre, costo, precio)
+        public ProductoSimple(string id, string nombre, decimal costo, decimal precio, string tipo) : base(id, nombre, costo, precio)
         {
             Cantidad = 0;
             Tipo = tipo;

@@ -17,7 +17,30 @@ namespace ventas.application
             ProductoRepository = prodRepository;
         }
 
-
-
+        public EntradaProductoResponse Ejecutar(SalidaProductoRequest request)
+        {
+            try
+            {
+                var prod = ProductoRepository.FindFirstOrDefault(prd => prd.Codigo == request.Codigo);
+                if (prod == null)
+                {
+                    return new EntradaProductoResponse(1, "Se puede registrar un producto nuevo");
+                }
+                Console.WriteLine(prod);
+                var respuesta = prod.RegistrarSalida(request.Cantidad);
+                UnitOfWork.Commit();
+                return new EntradaProductoResponse(0, respuesta);
+            }
+            catch (Exception e)
+            {
+                return new EntradaProductoResponse(1, "Error " + e);
+            }
+        }
     }
+
+
+    public record EntradaProductoResponse(int Estado, string Mensaje);
+
+
 }
+

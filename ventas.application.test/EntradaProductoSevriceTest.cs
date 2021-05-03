@@ -9,6 +9,7 @@ using ventas.infrastructure;
 
 namespace ventas.application.test
 {
+    
   public  class EntradaProductoSevriceTest
     {
         private ventasContext _dbContext;
@@ -30,7 +31,22 @@ namespace ventas.application.test
             _entradaService = new ProductoEntradaService(
                 new UnitOfWork(_dbContext),
                 new ProductoRepository(_dbContext));
+           
+            _dbContext.Productos.Add(ProductoMother.ProductoCocacola("001"));
+            _dbContext.SaveChanges();
               
+        }
+
+        [Test]
+        public void EntradaSimpleTest()
+        {
+            var response = _entradaService.Ejecutar(new SalidaProductoRequest("001", 3));
+            Assert.AreEqual("Nueva salida: Cocacola, cantidad:3, costo:1000, precio:3000", response.Mensaje);
+        }
+        [TearDown]
+        public void RunAnyAfterTest()
+        {
+            _dbContext.Database.EnsureDeleted();
         }
     }
 }
