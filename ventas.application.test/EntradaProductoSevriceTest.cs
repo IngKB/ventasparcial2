@@ -40,8 +40,15 @@ namespace ventas.application.test
         [Test]
         public void EntradaSimpleTest()
         {
-            var response = _entradaService.Ejecutar(new SalidaProductoRequest("003", 3));
-            Assert.AreEqual("Nueva salida: Cocacola, cantidad:3, costo:$ 1.000,00, precio:$ 3.000,00", response.Mensaje);
+            var response = _entradaService.Ejecutar(new EntradaProductoRequest("003", 3));
+            Assert.AreEqual("Nueva salida: Cocacola, cantidad:3, costo:$1.000,00, precio:$3.000,00", response.Mensaje);
+        }
+
+        [Test]
+        public void EntradaSimpleTestFallida()
+        {
+            var response = _entradaService.Ejecutar(new EntradaProductoRequest("005", 4));
+            Assert.AreEqual("Error no se encontro el producto", response.Mensaje);
         }
         [TearDown]
         public void RunAnyAfterTest()
