@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ventas.domain.Base;
 
 namespace ventas.domain
 {
-    public class ProductoSimple: Producto
+    public class ProductoSimple: Producto, IAggregateRoot
     {
         
         public int Cantidad { get; private set; }

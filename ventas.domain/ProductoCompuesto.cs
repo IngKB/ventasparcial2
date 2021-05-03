@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ventas.domain.Base;
 
 namespace ventas.domain
 {
-    public class ProductoCompuesto : Producto
+    public class ProductoCompuesto : Producto, IAggregateRoot
     {
 
         private List<Producto> Productos { get; set; }
