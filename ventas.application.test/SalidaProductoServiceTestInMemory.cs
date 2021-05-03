@@ -37,13 +37,13 @@ namespace ventas.application.test
                 new UnitOfWork(_dbContext),
                 new ProductoRepository(_dbContext));
 
-            ProductoSimple pan = (ProductoSimple)ProductoMother.ProductoPan("001");
+            ProductoSimple pan = (ProductoSimple)ProductoMother.ProductoPan("005");
             pan.RegistrarEntrada(10);
 
-            ProductoSimple salchicha = (ProductoSimple)ProductoMother.ProductoSalchicha("002");
+            ProductoSimple salchicha = (ProductoSimple)ProductoMother.ProductoSalchicha("006");
             salchicha.RegistrarEntrada(10);
 
-            ProductoCompuesto perro = new("003", "Perro", 5000, new List<Producto> { pan, salchicha });
+            ProductoCompuesto perro = new("004", "Perro", 5000, new List<Producto> { pan, salchicha });
 
             //_dbContext.Productos.Add(pan);
             _dbContext.Productos.Add(salchicha);
@@ -62,7 +62,7 @@ namespace ventas.application.test
         [Test]
         public void SalidaProductoCompuestoTest()
         {
-            var response = _salidaService.Ejecutar(new SalidaProductoRequest("003", 4));
+            var response = _salidaService.Ejecutar(new SalidaProductoRequest("004", 4));
             Assert.AreEqual("Nueva salida: Perro, cantidad:4, costo:$ 1.500,00, precio:$ 20.000,00", response.Mensaje);
         }
 

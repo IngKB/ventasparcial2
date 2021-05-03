@@ -31,10 +31,6 @@ namespace ventas.application.test
             _entradaService = new ProductoEntradaService(
                 new UnitOfWork(_dbContext),
                 new ProductoRepository(_dbContext));
-           
-            _dbContext.Productos.Add(ProductoMother.ProductoCocacola("003"));
-            _dbContext.SaveChanges();
-              
         }
 
         [Test]

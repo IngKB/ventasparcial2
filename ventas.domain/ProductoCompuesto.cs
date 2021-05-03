@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,7 +32,7 @@ namespace ventas.domain
                 item.RegistrarSalida(cantidad);
             }
 
-            return $"Nueva salida: {Nombre}, cantidad:{cantidad}, costo:{Costo.ToString("C2")}, precio:{precioTotal.ToString("C2")}";
+            return $"Nueva salida: {Nombre}, cantidad:{cantidad}, costo:{Costo.ToString("C2", new CultureInfo("es-CO"))}, precio:{precioTotal.ToString("C2", new CultureInfo("es-CO"))}";
 
         }
 
