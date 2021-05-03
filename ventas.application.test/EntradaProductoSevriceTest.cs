@@ -37,7 +37,7 @@ namespace ventas.application.test
         public void EntradaSimpleTest()
         {
             var response = _entradaService.Ejecutar(new EntradaProductoRequest("003", 3));
-            Assert.AreEqual("Nueva salida: Cocacola, cantidad:3, costo:$1.000,00, precio:$3.000,00", response.Mensaje);
+            Assert.AreEqual("Nueva salida: Cocacola, cantidad:3, costo:$ 1.000,00, precio:$ 3.000,00", response.Mensaje);
         }
 
         [Test]
