@@ -17,7 +17,7 @@ namespace ventas.application
             ProductoRepository = prodRepository;
         }
 
-        public EntradaProductoResponse Ejecutar(SalidaProductoRequest request)
+        public EntradaProductoResponse Ejecutar(EntradaProductoRequest request)
         {
             try
             {
@@ -26,18 +26,19 @@ namespace ventas.application
                 {
                     return new EntradaProductoResponse(1, "Se puede registrar un producto nuevo");
                 }
-                Console.WriteLine(prod);
                 var respuesta = prod.RegistrarSalida(request.Cantidad);
                 UnitOfWork.Commit();
                 return new EntradaProductoResponse(0, respuesta);
             }
             catch (Exception e)
             {
-                return new EntradaProductoResponse(1, "Error " + e);
+
+                return new EntradaProductoResponse(1, "Error no se encontro el producto" );
             }
         }
     }
 
+    public record EntradaProductoRequest(string Codigo , int Cantidad );
 
     public record EntradaProductoResponse(int Estado, string Mensaje);
 
