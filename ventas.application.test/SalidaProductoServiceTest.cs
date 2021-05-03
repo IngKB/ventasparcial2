@@ -5,17 +5,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ventas.domain;
 using ventas.infrastructure;
 
 namespace ventas.application.test
 {
+    [SetUpFixture]
     public class SalidaProductoServiceTest
     {
         private ventasContext _dbContext;
         private SalidaProductoService _salidaService;//SUT - Objeto bajo prueba
 
         //se ejecuta una vez por cada prueba //hace parte del Arrange
-        [SetUp]
+        [OneTimeSetUp]
         public void Setup()
         {
             //Arrange
@@ -31,5 +33,19 @@ namespace ventas.application.test
                 new UnitOfWork(_dbContext),
                 new ProductoRepository(_dbContext));
         }
+
+        [Test]
+        public void SalidaProductoTest()
+        {
+
+        }
+
+        [OneTimeTearDown]
+        public void RunAfterAnyTests()
+        {
+            _dbContext.Database.EnsureDeleted();
+        }
+
+
     }
 }
