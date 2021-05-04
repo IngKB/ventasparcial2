@@ -80,7 +80,7 @@ namespace ventas.domian.test
             cocacola.RegistrarEntrada(10);
             var respuesta = cocacola.RegistrarSalida(6);
             //Assert
-            Assert.AreEqual("Nueva salida: CocaCola, cantidad:6, costo:$ 1.000,00, precio:$ 3.000,00", respuesta);
+            Assert.AreEqual("Nueva salida: CocaCola, cantidad:6, costo_total:$ 1.000,00, precio_total:$ 3.000,00", respuesta);
         }
 
         /*
@@ -105,7 +105,7 @@ namespace ventas.domian.test
 
 
             //Assert
-            Assert.AreEqual("Nueva salida: PerroCaliente, cantidad:1, costo:$ 1.500,00, precio:$ 5.000,00", respuesta);
+            Assert.AreEqual("Nueva salida: PerroCaliente, cantidad:1, costo_total:$ 1.500,00, precio_total:$ 5.000,00", respuesta);
 
         }
     }

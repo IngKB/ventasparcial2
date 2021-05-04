@@ -13,6 +13,7 @@ namespace ventas.domain
         public string Nombre { get; protected set; }
         public decimal Costo { get; protected set; }
         public decimal Precio { get; protected set; }
+        public ProductoCompuesto ProductoPadre { get; private set; }
 
 
         protected Producto(string codigo, string nombre, decimal costo, decimal precio)

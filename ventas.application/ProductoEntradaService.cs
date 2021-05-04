@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ventas.domain;
 using ventas.domain.Contracts;
 
 namespace ventas.application
@@ -24,11 +25,17 @@ namespace ventas.application
                 var prod = ProductoRepository.FindFirstOrDefault(prd => prd.Codigo == request.Codigo);
                 if (prod == null)
                 {
-                    return new EntradaProductoResponse(1, "Se puede registrar un producto nuevo");
+                    return new EntradaProductoResponse(1, "No se encontro el producto");
                 }
-                var respuesta = prod.RegistrarSalida(request.Cantidad);
-                UnitOfWork.Commit();
-                return new EntradaProductoResponse(0, respuesta);
+                if(prod is ProductoSimple)
+                {
+                    var prodSimple = (ProductoSimple)prod;
+                    var respuesta = prodSimple.RegistrarEntrada(request.Cantidad);
+                    UnitOfWork.Commit();
+                    return new EntradaProductoResponse(0, respuesta);
+                }
+                return new EntradaProductoResponse(1, "No se puede registrar entrada de productos compuestos");
+
             }
             catch (Exception e)
             {

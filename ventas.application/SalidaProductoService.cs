@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ventas.domain;
 using ventas.domain.Contracts;
 
 namespace ventas.application
@@ -22,9 +23,14 @@ namespace ventas.application
             try
             {
                 var prod = ProductoRepository.FindFirstOrDefault(prd => prd.Codigo == request.Codigo);
+                
                 if (prod == null)
                 {
                     return new SalidaProductoResponse(1, "No se encuentra el producto");
+                }
+                if (prod is ProductoCompuesto)
+                {
+                    prod = ProductoRepository.FindFirstOrDefaultIncluded(prd => prd.Codigo == request.Codigo);
                 }
                 var respuesta = prod.RegistrarSalida(request.Cantidad);
                 UnitOfWork.Commit();

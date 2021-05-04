@@ -11,8 +11,7 @@ namespace ventas.domain
     public class ProductoCompuesto : Producto
     {
 
-        private List<Producto> Productos { get; set; }
-
+        public List<Producto> Productos { get; private set; }
 
         public ProductoCompuesto(string id, string nombre, decimal precio, List<Producto> productos) : base(id, nombre, 0, precio)
         {
@@ -26,13 +25,18 @@ namespace ventas.domain
 
         public override string RegistrarSalida(int cantidad)
         {
-            var precioTotal = cantidad * Precio;
-            foreach (var item in Productos)
+            if (cantidad >0)
             {
-                item.RegistrarSalida(cantidad);
-            }
+                var precioTotal = cantidad * Precio;
+                foreach (var item in Productos)
+                {
+                    item.RegistrarSalida(cantidad);
+                }
 
-            return $"Nueva salida: {Nombre}, cantidad:{cantidad}, costo:{Costo.ToString("C2", new CultureInfo("es-CO"))}, precio:{precioTotal.ToString("C2", new CultureInfo("es-CO"))}";
+                return $"Nueva salida: {Nombre}, cantidad:{cantidad}, costo_total:{Costo.ToString("C2", new CultureInfo("es-CO"))}, " +
+                    $"precio_total:{precioTotal.ToString("C2", new CultureInfo("es-CO"))}";
+            }
+            return $"Cantidad debe ser mayor a 0";
 
         }
 

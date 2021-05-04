@@ -12,7 +12,7 @@ namespace ventas.domain
         public int Cantidad { get; private set; }
         private string Tipo { get; set; }
 
-        public ProductoSimple(string id, string nombre, decimal costo, decimal precio, string tipo) : base(id, nombre, costo, precio)
+        public ProductoSimple(string codigo, string nombre, decimal costo, decimal precio, string tipo) : base(codigo, nombre, costo, precio)
         {
             Cantidad = 0;
             Tipo = tipo;
@@ -24,7 +24,7 @@ namespace ventas.domain
 
         public string RegistrarEntrada(int cantidad)
         {
-            if (cantidad >= 0)
+            if (cantidad > 0)
             {
                 this.Cantidad += cantidad;
                 return $"{Nombre} Nueva cantidad: {Cantidad}";
@@ -34,10 +34,10 @@ namespace ventas.domain
 
         public override string RegistrarSalida(int cantidad)
         {
-            if (cantidad >= 0)
+            if (cantidad > 0)
             {
                 this.Cantidad -= cantidad;
-                return $"Nueva salida: {Nombre}, cantidad:{cantidad}, costo:{Costo.ToString("C2", new CultureInfo("es-CO"))}, precio:{Precio.ToString("C2", new CultureInfo("es-CO"))}";
+                return $"Nueva salida: {Nombre}, cantidad:{cantidad}, costo_total:{Costo.ToString("C2", new CultureInfo("es-CO"))}, precio_total:{Precio.ToString("C2", new CultureInfo("es-CO"))}";
             }
             return "Salida menor o igual a 0";
         }

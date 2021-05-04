@@ -56,14 +56,14 @@ namespace ventas.application.test
         public void SalidaProductoSimpleTest()
         {
             var response = _salidaService.Ejecutar(new SalidaProductoRequest("001", 3));
-            Assert.AreEqual("Nueva salida: Pan, cantidad:3, costo:$ 500,00, precio:$ 0,00", response.Mensaje);
+            Assert.AreEqual("Nueva salida: Pan, cantidad:3, costo_total:$ 500,00, precio_total:$ 0,00", response.Mensaje);
         }
 
         [Test]
         public void SalidaProductoCompuestoTest()
         {
             var response = _salidaService.Ejecutar(new SalidaProductoRequest("004", 4));
-            Assert.AreEqual("Nueva salida: Perro, cantidad:4, costo:$ 1.500,00, precio:$ 20.000,00", response.Mensaje);
+            Assert.AreEqual("Nueva salida: Perro, cantidad:4, costo_total:$ 1.500,00, precio_total:$ 20.000,00", response.Mensaje);
         }
 
         [OneTimeTearDown]
